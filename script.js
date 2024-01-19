@@ -130,4 +130,8 @@ $(document).ready(()=>{
     $("#btn-close-info").click(()=>{
         closeInfo();
     })
+
+    $("#add-note").click(()=>{
+        addNote();
+    })
 })
