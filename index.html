@@ -1,0 +1,92 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes++</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        r = $(":root");
+            
+        loadTheme();    
+
+        //returns true for light mode, and false for dark mode
+        function themeMode(){
+            return Boolean(parseInt(localStorage.getItem("light-mode")));
+        }
+
+        function loadTheme(){
+            if(themeMode()){
+                //change properties to light mode colors;
+                r.css({
+                    "--primary-color": "#FFFFFF",
+                    "--secondary-color": "#009063",
+                    "--border-color": "#142724",
+                    "--text-color": "#ffffff"
+                })
+                
+            } else {
+                //change properties to dark mode colors;
+                r.css({
+                    "--primary-color": "#0c120e",
+                    "--secondary-color": "#27322c",
+                    "--border-color": "#8b928e",
+                    "--text-color": "#ffffff"
+                })
+            }
+        }
+
+        function toggleTheme(){
+            localStorage.setItem("light-mode", (+!themeMode()).toString());
+            loadTheme();
+        }
+    </script>
+ </head>
+ <body>
+    <!-- Info Overlay -->
+    <div id="overlay" class="hidden">
+        <div id="info">
+            <button onclick="closeInfo()">
+                <img src="assets/close.svg">
+            </button>
+            <div>
+                <h3>Members</h3>
+                <ul>
+                    <li><strong>Bitang, Sean Karl</strong></li>
+                    <li>Balintag, Arnel</li>
+                    <li>Indong, John Paul</li>
+                    <li>Lom-oc, Rulph Harvey</li>
+                    <li>Sanaga, Rubie Jane</li>
+                    <li>Varela, Rheed Lloyd</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Resources</h3>
+                <ul>
+                    <li><div> Icons made by <a href="https://www.flaticon.com/authors/arkinasi" title="Arkinasi" target="_blank"> Arkinasi </a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank">www.flaticon.com</a></div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- add header below -->
+    <header>
+        <h1>Sticky Notes++</h1>
+        <div></div>
+        <button id="btnInfo" onclick="showInfo()"><img src="assets/info.svg"></button>
+        <button id="btnTheme" onclick="toggleTheme()"><img src="assets/theme.svg"></button>
+    </header>
+
+    <!-- app -->
+    <div id="app">
+        <button id="add-note" onclick="addNote()">
+            <p>+</p>
+            <p>Add new note</p>
+        </button>
+    </div>
+
+    <script src="script.js" ></script>
+ </body>
+ </html>
